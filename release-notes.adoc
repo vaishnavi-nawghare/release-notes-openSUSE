@@ -1,0 +1,15 @@
+= openSUSE Leap Release Notes
+:toc:
+:icons: font
+
+== Introduction
+
+This document contains the release notes for openSUSE Leap.
+
+== New Features
+
+* List new features here...
+
+== Bug Fixes
+
+* List bug fixes here...

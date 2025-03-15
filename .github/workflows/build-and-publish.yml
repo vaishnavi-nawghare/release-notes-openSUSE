@@ -1,0 +1,46 @@
+name: Build and Publish Release Notes
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install Git
+      run: sudo apt-get install -y git
+
+    - name: Fetch SLES Content
+      run: python scripts/fetch_sles_content.py
+
+    - name: Set up Asciidoctor
+      run: sudo apt-get install -y asciidoctor
+
+    - name: Build Release Notes
+      run: asciidoctor -b html5 -o release-notes.html leap-release-notes.adoc
+
+    - name: Upload Release Notes Artifact
+      if: github.event_name == 'pull_request'
+      uses: actions/upload-artifact@v2
+      with:
+        name: release-notes-preview
+        path: release-notes.html
+
+    - name: Deploy Release Notes
+      if: github.event_name == 'push'
+      run: |
+        # Add deployment steps here
