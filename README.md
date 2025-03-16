@@ -89,6 +89,3 @@ When the above dependencies are satisfied, you can create output using:
 
 Find general information about the release notes at
 [https://en.opensuse.org/openSUSE:Release_Notes](https://en.opensuse.org/openSUSE:Release_Notes).
-
-
-testing workflow
